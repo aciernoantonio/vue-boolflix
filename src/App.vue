@@ -5,14 +5,14 @@
       <input type="text" v-model="searchText">
       <button @click="searchedMovie">Search</button>
 
-      <div class="movie" v-for="(movie, index) in movieList" :key="index">
+      <ul class="movie" v-for="(movie, index) in movieList" :key="index">
         
-        <h3>{{movie.title}}</h3>
-        <h3>{{movie.original_title}}</h3>
-        <div>{{movie.original_language}}</div>
-        <div>{{movie.vote_average}}</div>
+        <li><h3>{{movie.title}}</h3></li>
+        <li><h3>{{movie.original_title}}</h3></li>
+        <li><country-flag :country="movie.original_language === 'en' ? 'gb' : movie.original_language" size="normal" /></li>
+        <li><div>{{movie.vote_average}}</div></li>
 
-      </div>
+      </ul>
 
     </div>
 
@@ -25,6 +25,7 @@
 <script>
 import axios from "axios"
 
+
 export default {
   name: 'App',
   components: {
@@ -36,6 +37,7 @@ export default {
       movieList: [],
       link: `https://api.themoviedb.org/3/search/movie?api_key=e089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false&query=`,
       searchText: "",
+      leng: "",
       reponse: null,
     }
   },
@@ -50,7 +52,7 @@ export default {
       this.movieList = response.data.results;
       console.log(this.movieList);
       })
-    } 
+    }
   }
 
 }
