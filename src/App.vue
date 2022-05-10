@@ -35,9 +35,9 @@ export default {
   data(){
     return {
       movieList: [],
-      link: `https://api.themoviedb.org/3/search/movie?api_key=e089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false&query=`,
+      linkMovie: `https://api.themoviedb.org/3/search/movie?api_key=e089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false&query=`,
+      linkTv: `https://api.themoviedb.org/3/search/tv?api_key=api_key%3De089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false&query=`,
       searchText: "",
-      leng: "",
       reponse: null,
     }
   },
@@ -46,13 +46,21 @@ export default {
 
     searchedMovie(){
       axios
-      .get(`${this.link}${this.searchText}`)
+      .get(`${this.linkMovie}${this.searchText}`)
       .then(response => {
-        console.log(response.data.results);
+      this.movieList = response.data.results;
+      console.log(this.movieList);
+      }),
+
+      axios
+      .get(`${this.linkTv}${this.searchText}`)
+      .then(response => {
       this.movieList = response.data.results;
       console.log(this.movieList);
       })
+
     }
+    
   }
 
 }
