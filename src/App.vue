@@ -7,10 +7,11 @@
 
       <ul class="movie" v-for="(movie, index) in movieList" :key="index">
         
+        <li><img :src="imgSize + movie.poster_path" alt=""></li>
         <li><h3>{{movie.title}}{{movie.name}}</h3></li>
         <li><h3>{{movie.original_title}}{{movie.original_name}}</h3></li>
         <li><country-flag :country="movie.original_language === 'en' ? 'gb' : movie.original_language" size="normal" /></li>
-        <li><div>{{movie.vote_average}}</div></li>
+        <!-- <li><div>{{roundvote(movie.vote_average)}}</div></li> -->
 
       </ul>
 
@@ -39,6 +40,7 @@ export default {
       linkTv: `https://api.themoviedb.org/3/search/tv?api_key=e089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false&query=`,
       searchText: "",
       reponse: null,
+      imgSize: "http://image.tmdb.org/t/p/w500/",
     }
   },
 
@@ -61,6 +63,11 @@ export default {
 
     }
     
+  },
+
+  roundVote(vote){
+    vote = vote / 2;
+    Math.round(vote);
   }
 
 }
