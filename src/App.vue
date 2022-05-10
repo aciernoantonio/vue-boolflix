@@ -2,15 +2,18 @@
   <div id="app">
 
     <div class="searchbar">
-      <input type="text" v-model="searchText" @keyup="searchedMovie">
+      <input type="text" v-model="searchText">
       <button @click="searchedMovie">Search</button>
+
+      <div class="movie" v-for="(movie, index) in movieList" :key="index">
+        
+        <img :src="movie.poster_path" :alt="movie.title">
+
+      </div>
+
     </div>
 
-    <div class="results">
-
-      <div class="movie"></div>
-
-    </div>
+    
     
 
   </div>
@@ -28,22 +31,23 @@ export default {
   data(){
     return {
       movieList: [],
-      link: "https://api.themoviedb.org/3/search/movie?api_key=e089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false",
+      link: `https://api.themoviedb.org/3/search/movie?api_key=e089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false&query=`,
       searchText: "",
+      reponse: null,
     }
   },
 
   methods:{
+
     searchedMovie(){
-      console.log(this.searchText);
       axios
-      .get(this.link)
+      .get(`${this.link}${this.searchText}`)
       .then(response => {
-        this.movie = response.data.results;
-        console.log(this.movie);
+      this.movieList = response.data.results;
       })
-    }
+    } 
   }
+
 }
 </script>
 
