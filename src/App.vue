@@ -7,7 +7,10 @@
 
       <div class="movie" v-for="(movie, index) in movieList" :key="index">
         
-        <img :src="movie.poster_path" :alt="movie.title">
+        <h3>{{movie.title}}</h3>
+        <h3>{{movie.original_title}}</h3>
+        <div>{{movie.original_language}}</div>
+        <div>{{movie.vote_average}}</div>
 
       </div>
 
@@ -43,12 +46,15 @@ export default {
       axios
       .get(`${this.link}${this.searchText}`)
       .then(response => {
+        console.log(response.data.results);
       this.movieList = response.data.results;
+      console.log(this.movieList);
       })
     } 
   }
 
 }
+
 </script>
 
 <style lang="scss">
@@ -57,5 +63,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+img{
+  height: 200px;
 }
 </style>
