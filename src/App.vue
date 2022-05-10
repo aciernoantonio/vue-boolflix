@@ -7,8 +7,8 @@
 
       <ul class="movie" v-for="(movie, index) in movieList" :key="index">
         
-        <li><h3>{{movie.title}}</h3></li>
-        <li><h3>{{movie.original_title}}</h3></li>
+        <li><h3>{{movie.title}}{{movie.name}}</h3></li>
+        <li><h3>{{movie.original_title}}{{movie.original_name}}</h3></li>
         <li><country-flag :country="movie.original_language === 'en' ? 'gb' : movie.original_language" size="normal" /></li>
         <li><div>{{movie.vote_average}}</div></li>
 
@@ -36,7 +36,7 @@ export default {
     return {
       movieList: [],
       linkMovie: `https://api.themoviedb.org/3/search/movie?api_key=e089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false&query=`,
-      linkTv: `https://api.themoviedb.org/3/search/tv?api_key=api_key%3De089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false&query=`,
+      linkTv: `https://api.themoviedb.org/3/search/tv?api_key=e089283e85aac817aa741b544b97794c&language=en-US&page=1&include_adult=false&query=`,
       searchText: "",
       reponse: null,
     }
