@@ -13,14 +13,14 @@
         <li><country-flag :country="movie.original_language === 'en' ? 'gb' : movie.original_language" size="normal" /></li>
         <li>
           <div v-for="num in roundVote(movie.vote_average)" :key="num">
-            <div>*</div>
+            <div><!-- <font-awesome-icon icon="fa-solid fa-star" /> --></div>
           </div>
 
           <div v-for="empty in 5 - roundVote(movie.vote_average)" :key="empty">
-            <div>-</div>
+            <div><!-- <font-awesome-icon icon="fa-regular fa-star" /> --></div>
           </div>
         </li>
-        <!-- per ottenere le stelle vuote poi fai 5 - roundVote e cicli di nuovo -->
+        
 
       </ul>
 
